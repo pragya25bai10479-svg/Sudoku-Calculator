@@ -1,17 +1,14 @@
-def can_place(board, row, col, num):
-    # Check if num is not in current row or column
-    for i in range(9):
-        if board[row][i] == num or board[i][col] == num:
+def can_place(board, row, col, num):                           # Check if num is not in current row or column
+for i in range(9):
+    if board[row][i] == num or board[i][col] == num:
+        return False
+box_start_row = (row // 3) * 3
+box_start_col = (col // 3) * 3
+for i in range(3):
+    for j in range(3):
+        if board[box_start_row + i][box_start_col + j] == num:
             return False
-    
-    # Check in 3x3 box
-    box_start_row = (row // 3) * 3
-    box_start_col = (col // 3) * 3
-    for i in range(3):
-        for j in range(3):
-            if board[box_start_row + i][box_start_col + j] == num:
-                return False
-    return True
+return True
 
 def solve(board):
     for row in range(9):
